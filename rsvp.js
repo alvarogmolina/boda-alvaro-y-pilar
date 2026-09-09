@@ -198,7 +198,8 @@ form.addEventListener("submit", async function (event) {
 
   event.preventDefault();
 
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwBmhsRTE8nOIEYsyJVKzleggixTVyyw_iaGfVlvg0LWR2vCRPIX7gaYArpsSZhUMQq/exec";
+  const WEB_APP_URL =
+    "https://script.google.com/macros/s/AKfycbwBmhsRTE8nOIEYsyJVKzleggixTVyyw_iaGfVlvg0LWR2vCRPIX7gaYArpsSZhUMQq/exec";
 
   const formData = new FormData(form);
   const datos = Object.fromEntries(formData.entries());
@@ -210,10 +211,23 @@ form.addEventListener("submit", async function (event) {
 
   try {
 
-    await fetch(WEB_APP_URL, {
+    const response = await fetch(WEB_APP_URL, {
       method: "POST",
       body: JSON.stringify(datos)
     });
+
+    if (!response.ok) {
+      throw new Error(`Error HTTP: ${response.status}`);
+    }
+
+    const resultado = await response.json();
+
+    if (!resultado.ok) {
+      throw new Error(
+        resultado.mensaje ||
+        "El servidor ha rechazado la confirmación"
+      );
+    }
 
     alert("¡Confirmación enviada correctamente!");
 
@@ -226,11 +240,11 @@ form.addEventListener("submit", async function (event) {
 
   } catch (error) {
 
+    console.error(error);
+
     alert(
       "No se ha podido enviar la confirmación. Inténtalo de nuevo."
     );
-
-    console.error(error);
 
   } finally {
 
