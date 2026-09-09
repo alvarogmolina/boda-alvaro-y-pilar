@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Boda Álvaro & Pilar</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+
+    <a href="#inicio" class="header-logo">
+      Álvaro & Pilar
+    </a>
+
+    <button
+      class="menu-button"
+      id="menu-button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="navigation"
+    >
+      ☰
+    </button>
+
+    <nav class="navigation" id="navigation">
+      <a href="#inicio">Inicio</a>
+      <a href="#gran-dia">El gran día</a>
+      <a href="#transporte">Transporte</a>
+      <a href="#alojamiento">Alojamiento</a>
+      <a href="#confirmacion">Confirmar asistencia</a>
+      <a href="#informacion">Información útil</a>
+    </nav>
+
+  </header>
+
+
+  <main>
+
+    <!-- PORTADA -->
+<section class="hero" id="inicio">
+
+  <div class="hero-map hero-map-top">
+    <img
+      src="images/malaga.png"
+      alt="Mapa minimalista de Málaga"
+    >
+  </div>
+
+  <div class="hero-content">
+
+    <h1>Álvaro & Pilar</h1>
+
+    <p class="wedding-date">
+      27 · 02 · 2027
+    </p>
+
+  </div>
+
+  <div class="hero-map hero-map-bottom">
+    <img
+      src="images/mairena.png"
+      alt="Mapa minimalista de Mairena del Alcor"
+    >
+  </div>
+
+  <div class="countdown">
+    <p>FALTAN</p>
+    <p id="countdown">Calculando...</p>
+  </div>
+
+  <a href="#gran-dia" class="scroll-down" aria-label="Ir a El gran día">
+    ↓
+  </a>
+
+</section>
+
+
+    <!-- EL GRAN DÍA -->
+    <section class="section" id="gran-dia">
+
+      <h2>El gran día</h2>
+
+      <div class="event">
+
+        <h3>Ceremonia</h3>
+
+        <p class="event-time">12:00 h</p>
+
+        <p>
+          Parroquia Nuestra Señora de la Asunción
+          <br>
+          (Iglesia Mayor)
+          <br>
+          Mairena del Alcor, Sevilla
+        </p>
+
+        <a
+          class="button"
+          href="https://maps.app.goo.gl/voB6gTwF3BckTge58"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Cómo llegar
+        </a>
+
+      </div>
+
+
+      <div class="event">
+
+        <h3>Celebración</h3>
+
+        <p>
+          Después de la ceremonia
+        </p>
+
+        <p>
+          Hacienda Vera Cruz
+        </p>
+
+        <a
+          class="button"
+          href="https://maps.app.goo.gl/yJd9EEko5qE2WFs27"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Cómo llegar
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- TRANSPORTE -->
+    <section class="section" id="transporte">
+
+      <h2>Transporte</h2>
+
+      <p>
+        Habrá servicio de autobús para nuestros invitados.
+      </p>
+
+      <div class="transport-block">
+        <h3>Ida</h3>
+        <p>
+          Próximamente publicaremos las paradas y horarios.
+        </p>
+      </div>
+
+      <div class="transport-block">
+        <h3>Vuelta</h3>
+        <p>
+          Próximamente publicaremos los horarios y destinos.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- ALOJAMIENTO -->
+    <section class="section" id="alojamiento">
+
+      <h2>Alojamiento</h2>
+
+      <p>
+        Hemos recopilado varias opciones de alojamiento cercanas.
+      </p>
+
+
+      <details class="hotel-card">
+
+        <summary>
+          <strong>Hotel Mairena</strong>
+          <span>Mairena del Alcor · Desde 47 €</span>
+        </summary>
+
+        <div class="hotel-info">
+          <p>Individual: 47 €</p>
+          <p>Doble / Matrimonial: 79 €</p>
+          <p>Matrimonio reformada: 89 €</p>
+          <p>Familiar: 119 €</p>
+          <p>Cama supletoria: 22 €</p>
+          <p>Cuna: gratuita</p>
+
+          <p>
+            Para reservar, indícanos qué tipo de habitación necesitas
+            y cuántas noches.
+          </p>
+        </div>
+
+      </details>
+
+
+      <details class="hotel-card">
+
+        <summary>
+          <strong>Hostal San Pedro</strong>
+          <span>A 10 minutos andando de la iglesia</span>
+        </summary>
+
+        <div class="hotel-info">
+          <p>Individual: 35 €</p>
+          <p>Doble: 50 €</p>
+          <p>Triple: 55 €</p>
+
+          <p>
+            Los precios podrían modificarse para 2027.
+          </p>
+        </div>
+
+      </details>
+
+
+      <details class="hotel-card">
+
+        <summary>
+          <strong>Pensión Larra</strong>
+          <span>Cerca del Hotel Mairena</span>
+        </summary>
+
+        <div class="hotel-info">
+          <p>Doble: 55 €</p>
+          <p>Individual: 40 €</p>
+          <p>Cama supletoria: 15 €</p>
+
+          <p>
+            Dispone de pocas plazas.
+            Las reservas todavía no están abiertas.
+          </p>
+        </div>
+
+      </details>
+
+
+      <details class="hotel-card">
+
+        <summary>
+          <strong>Aire Hostal Los Alcores</strong>
+          <span>El Viso del Alcor</span>
+        </summary>
+
+        <div class="hotel-info">
+          <p>
+            Dispone de pocas plazas.
+          </p>
+
+          <p>
+            Las reservas estarán disponibles más adelante.
+          </p>
+        </div>
+
+      </details>
+
+    </section>
+
+
+    <!-- CONFIRMACIÓN -->
+    <section class="section confirmation" id="confirmacion">
+
+      <h2>Confirmar asistencia</h2>
+
+      <p>
+        Nos encantará contar contigo.
+      </p>
+
+      <p>
+        Confirma tu asistencia y facilítanos la información
+        necesaria para organizar el gran día.
+      </p>
+
+      <a href="confirmar.html" class="button">
+        Confirmar asistencia
+        </a>
+
+    </section>
+
+
+    <!-- INFORMACIÓN ÚTIL -->
+    <section class="section" id="informacion">
+
+      <h2>Información útil</h2>
+
+      <p>
+        Añadiremos aquí cualquier información adicional
+        que pueda ser útil para el día de la boda.
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <p>Álvaro & Pilar</p>
+    <p>27 · 02 · 2027</p>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>

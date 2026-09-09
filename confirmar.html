@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Confirmar asistencia | Álvaro & Pilar</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 20px 60px;
+      font-family: Arial, sans-serif;
+      color: #222;
+      background: #fff;
+    }
+
+    main {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .volver {
+      display: inline-block;
+      margin-bottom: 32px;
+      color: #222;
+      text-decoration: none;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .intro {
+      margin-bottom: 40px;
+      line-height: 1.5;
+    }
+
+    .campo {
+      margin-bottom: 28px;
+    }
+
+    label,
+    legend {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    fieldset {
+      margin: 0 0 28px;
+      padding: 0;
+      border: 0;
+    }
+
+    .opcion {
+      display: block;
+      margin: 12px 0;
+      font-weight: 400;
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    .bloque-plus-one {
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      margin-top: 16px;
+      border: 1px solid #222;
+      background: #222;
+      color: #fff;
+      font: inherit;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+
+    <a href="index.html" class="volver">← Volver</a>
+
+    <h1>Confirmar asistencia</h1>
+
+    <p class="intro">
+      Nos hace mucha ilusión compartir este día contigo.
+      Confírmanos tu asistencia rellenando este formulario.
+    </p>
+
+    <form id="rsvp-form">
+
+      <!-- INVITADO PRINCIPAL -->
+
+      <div class="campo">
+        <label for="nombre">Nombre y apellidos *</label>
+        <input type="text" id="nombre" name="nombre" required>
+      </div>
+
+      <fieldset>
+        <legend>¿Asistirás? *</legend>
+
+        <label class="opcion">
+          <input type="radio" name="asistencia" value="si" required>
+          Sí, asistiré
+        </label>
+
+        <label class="opcion">
+          <input type="radio" name="asistencia" value="no">
+          No podré asistir
+        </label>
+      </fieldset>
+
+
+      <!-- DATOS SI ASISTE -->
+
+      <div id="datos-asistente" class="oculto">
+
+        <fieldset>
+          <legend>¿Tienes alguna alergia, intolerancia o necesidad alimentaria? *</legend>
+
+          <label class="opcion">
+            <input type="radio" name="alimentacion" value="no">
+            No
+          </label>
+
+          <label class="opcion">
+            <input type="radio" name="alimentacion" value="si">
+            Sí
+          </label>
+        </fieldset>
+
+        <div id="detalle-alimentacion" class="campo oculto">
+          <label for="alimentacion-texto">Indícanos cuál *</label>
+          <textarea
+            id="alimentacion-texto"
+            name="alimentacion_texto"
+          ></textarea>
+        </div>
+
+
+        <fieldset>
+          <legend>¿Utilizarás el autobús de ida? *</legend>
+
+          <label class="opcion">
+            <input type="radio" name="bus_ida" value="si">
+            Sí
+          </label>
+
+          <label class="opcion">
+            <input type="radio" name="bus_ida" value="no">
+            No
+          </label>
+        </fieldset>
+
+
+        <fieldset>
+          <legend>¿Utilizarás el autobús de vuelta? *</legend>
+
+          <label class="opcion">
+            <input type="radio" name="bus_vuelta" value="si">
+            Sí
+          </label>
+
+          <label class="opcion">
+            <input type="radio" name="bus_vuelta" value="no">
+            No
+          </label>
+        </fieldset>
+
+
+        <fieldset>
+          <legend>¿Vendrás con acompañante? *</legend>
+
+          <label class="opcion">
+            <input type="radio" name="plus_one" value="si">
+            Sí
+          </label>
+
+          <label class="opcion">
+            <input type="radio" name="plus_one" value="no">
+            No
+          </label>
+        </fieldset>
+
+
+        <!-- ACOMPAÑANTE -->
+
+        <div id="plus-one-data" class="bloque-plus-one oculto">
+
+          <h2>Tu acompañante</h2>
+
+          <div class="campo">
+            <label for="plus-one-nombre">Nombre y apellidos *</label>
+            <input
+              type="text"
+              id="plus-one-nombre"
+              name="plus_one_nombre"
+            >
+          </div>
+
+
+          <fieldset>
+            <legend>¿Tiene alguna alergia, intolerancia o necesidad alimentaria? *</legend>
+
+            <label class="opcion">
+              <input type="radio" name="plus_one_alimentacion" value="no">
+              No
+            </label>
+
+            <label class="opcion">
+              <input type="radio" name="plus_one_alimentacion" value="si">
+              Sí
+            </label>
+          </fieldset>
+
+          <div id="plus-one-alimentacion-detalle" class="campo oculto">
+            <label for="plus-one-alimentacion-texto">Indícanos cuál *</label>
+
+            <textarea
+              id="plus-one-alimentacion-texto"
+              name="plus_one_alimentacion_texto"
+            ></textarea>
+          </div>
+
+
+          <fieldset>
+            <legend>¿Utilizará el autobús de ida? *</legend>
+
+            <label class="opcion">
+              <input type="radio" name="plus_one_bus_ida" value="si">
+              Sí
+            </label>
+
+            <label class="opcion">
+              <input type="radio" name="plus_one_bus_ida" value="no">
+              No
+            </label>
+          </fieldset>
+
+
+          <fieldset>
+            <legend>¿Utilizará el autobús de vuelta? *</legend>
+
+            <label class="opcion">
+              <input type="radio" name="plus_one_bus_vuelta" value="si">
+              Sí
+            </label>
+
+            <label class="opcion">
+              <input type="radio" name="plus_one_bus_vuelta" value="no">
+              No
+            </label>
+          </fieldset>
+
+        </div>
+
+
+        <!-- OBSERVACIONES -->
+
+        <div class="campo">
+          <label for="observaciones">Observaciones</label>
+
+          <textarea
+            id="observaciones"
+            name="observaciones"
+            placeholder="Si necesitas contarnos algo más, puedes hacerlo aquí."
+          ></textarea>
+        </div>
+
+      </div>
+
+
+      <button type="submit">
+        Enviar confirmación
+      </button>
+
+    </form>
+
+  </main>
+
+  <script src="rsvp.js"></script>
+
+</body>
+</html>
