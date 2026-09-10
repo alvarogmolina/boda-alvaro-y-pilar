@@ -237,9 +237,13 @@ function doPost(e) {
 function guardarFilas(filas) {
 
   const hoja =
-    SpreadsheetApp
-      .getActiveSpreadsheet()
-      .getSheets()[0];
+  SpreadsheetApp
+    .getActiveSpreadsheet()
+    .getSheetByName("Respuestas_RSVP");
+
+if (!hoja) {
+  throw new Error('No existe la hoja "Respuestas_RSVP"');
+}
 
   const lock = LockService.getScriptLock();
 
