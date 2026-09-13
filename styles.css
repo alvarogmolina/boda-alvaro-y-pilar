@@ -1,4 +1,18 @@
 /* =========================
+   COLORES
+========================= */
+
+:root {
+  --background: #F7F3EE;
+  --background-light: #FBF9F6;
+  --text: #2E2A27;
+  --text-soft: #746E68;
+  --accent: #7B8067;
+  --border: rgba(46, 42, 39, 0.14);
+}
+
+
+/* =========================
    BASE
 ========================= */
 
@@ -13,14 +27,26 @@ html {
 
 body {
   margin: 0;
+
   font-family: Arial, sans-serif;
-  color: #222;
-  background: #fff;
+  color: var(--text);
+  background: var(--background);
+
+  line-height: 1.6;
 }
 
 button,
-a {
+a,
+input,
+textarea {
   font: inherit;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
 }
 
 
@@ -32,6 +58,7 @@ a {
   position: fixed;
   top: 0;
   left: 0;
+
   width: 100%;
   height: 64px;
 
@@ -41,22 +68,46 @@ a {
 
   padding: 0 20px;
 
-  background: white;
-  border-bottom: 1px solid #ddd;
+  background: rgba(247, 243, 238, 0.97);
+  border-bottom: 1px solid var(--border);
 
   z-index: 1000;
 }
 
 .header-logo {
-  color: #222;
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+
   text-decoration: none;
-  font-weight: bold;
+}
+
+.header-logo img {
+  display: block;
+
+  width: auto;
+  height: 50px;
 }
 
 .menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  padding: 0;
+
   border: 0;
   background: transparent;
-  font-size: 28px;
+
+  color: var(--text);
+
+  font-size: 27px;
+  line-height: 1;
+
   cursor: pointer;
 }
 
@@ -74,8 +125,8 @@ a {
 
   width: 100%;
 
-  background: white;
-  border-bottom: 1px solid #ddd;
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
 }
 
 .navigation.open {
@@ -84,12 +135,12 @@ a {
 }
 
 .navigation a {
-  padding: 18px 20px;
+  padding: 18px 24px;
 
-  color: #222;
+  color: var(--text);
   text-decoration: none;
 
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border);
 }
 
 
@@ -118,8 +169,10 @@ a {
 
 .hero-map img {
   display: block;
+
   width: 100%;
   height: 100%;
+
   object-fit: cover;
 }
 
@@ -138,21 +191,24 @@ a {
 /* CONTENIDO CENTRAL */
 
 .hero-content {
-  padding: 22px 24px 18px;
+  padding: 28px 24px 24px;
 }
 
 .hero h1 {
   margin: 0;
 
-  font-size: 2.4rem;
-  font-weight: 500;
+  font-size: 2.65rem;
+  font-weight: 400;
+  line-height: 1.05;
 }
 
 .wedding-date {
   margin: 14px 0 0;
 
-  font-size: 1.15rem;
-  letter-spacing: 0.15em;
+  color: var(--accent);
+
+  font-size: 1rem;
+  letter-spacing: 0.22em;
 }
 
 
@@ -170,23 +226,44 @@ a {
 /* CUENTA ATRÁS */
 
 .countdown {
-  margin-top: 18px;
+  margin-top: 20px;
+
+  color: var(--text);
 }
 
 .countdown p {
-  margin: 5px 0;
+  margin: 4px 0;
+}
+
+.countdown p:first-child {
+  color: var(--text-soft);
+
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+}
+
+#countdown {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.1rem;
 }
 
 
 /* FLECHA */
 
 .scroll-down {
-  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  color: #222;
+  width: 44px;
+  height: 44px;
+
+  margin-top: 8px;
+
+  color: var(--text);
   text-decoration: none;
 
-  font-size: 28px;
+  font-size: 27px;
 }
 
 
@@ -195,17 +272,29 @@ a {
 ========================= */
 
 .section {
-  padding: 72px 24px;
+  padding: 80px 24px;
+
   text-align: center;
 }
 
 .section h2 {
-  margin-top: 0;
-  margin-bottom: 40px;
+  margin: 0 0 32px;
+
+  font-size: 2rem;
+  line-height: 1.15;
 }
 
 .section h3 {
-  margin-top: 0;
+  margin: 0 0 14px;
+
+  font-size: 1.4rem;
+}
+
+.section p {
+  max-width: 520px;
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .event {
@@ -217,12 +306,12 @@ a {
 }
 
 .event-time {
-  font-size: 1.25rem;
-  font-weight: bold;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .transport-block {
-  margin-top: 40px;
+  margin-top: 44px;
 }
 
 
@@ -233,14 +322,19 @@ a {
 .button {
   display: inline-block;
 
-  margin-top: 16px;
-  padding: 14px 22px;
+  margin-top: 18px;
+  padding: 13px 24px;
 
-  border: 1px solid #222;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+
   background: transparent;
 
-  color: #222;
+  color: var(--text);
   text-decoration: none;
+
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
 
   cursor: pointer;
 }
@@ -253,9 +347,14 @@ a {
 .hotel-card {
   margin: 16px 0;
 
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  background: var(--background-light);
 
   text-align: left;
+
+  overflow: hidden;
 }
 
 .hotel-card summary {
@@ -270,13 +369,27 @@ a {
   display: block;
 }
 
+.hotel-card summary strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
 .hotel-card summary span {
-  margin-top: 8px;
-  font-size: 0.9rem;
+  margin-top: 6px;
+
+  color: var(--text-soft);
+
+  font-size: 0.87rem;
 }
 
 .hotel-info {
   padding: 0 20px 20px;
+}
+
+.hotel-info p {
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 
@@ -285,8 +398,10 @@ a {
 ========================= */
 
 .confirmation {
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  background: var(--background-light);
+
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 
@@ -295,44 +410,62 @@ a {
 ========================= */
 
 .comments-section {
-  padding: 64px 20px;
+  padding: 80px 24px;
 }
 
 .comments-container {
   width: 100%;
   max-width: 720px;
+
   margin: 0 auto;
 }
 
 .comments-section h2 {
   margin: 0 0 32px;
+
   text-align: center;
+
+  font-size: 2rem;
+  line-height: 1.15;
 }
 
 .comments-form {
   display: flex;
   flex-direction: column;
+
   gap: 20px;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
+
   gap: 8px;
 }
 
 .comments-form label {
+  font-size: 0.9rem;
   font-weight: 600;
 }
 
 .comments-form input,
 .comments-form textarea {
   width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #cccccc;
-  border-radius: 6px;
-  font: inherit;
-  background: #ffffff;
+
+  padding: 13px 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 7px;
+
+  background: var(--background-light);
+  color: var(--text);
+
+  outline: none;
+}
+
+.comments-form input:focus,
+.comments-form textarea:focus {
+  border-color: var(--accent);
 }
 
 .comments-form textarea {
@@ -341,16 +474,22 @@ a {
 
 .comments-form button {
   align-self: center;
+
   margin-top: 4px;
-  padding: 12px 24px;
-  border: 0;
-  border-radius: 6px;
+  padding: 13px 24px;
+
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+
+  background: transparent;
+  color: var(--text);
+
   cursor: pointer;
-  font: inherit;
 }
 
 .comment-success {
   margin: 4px 0 0;
+
   text-align: center;
   font-weight: 600;
 }
@@ -361,42 +500,57 @@ a {
 
 .published-comments h3 {
   margin: 0 0 24px;
+
   text-align: center;
+
+  font-size: 1.35rem;
 }
 
 #lista-comentarios {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+
+  gap: 14px;
 }
 
 .comment-card {
   padding: 18px 20px;
-  border: 1px solid #dddddd;
+
+  border: 1px solid var(--border);
   border-radius: 8px;
+
+  background: var(--background-light);
 }
 
 .comment-header {
   display: flex;
   flex-direction: column;
+
   gap: 3px;
+
   margin-bottom: 12px;
 }
 
 .comment-header strong {
   margin: 0;
-  font-size: 1rem;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  font-weight: 400;
 }
 
 .comment-date {
+  color: var(--text-soft);
+
   font-size: 0.78rem;
-  color: #888888;
 }
 
 .comment-card p {
   margin: 0;
-  line-height: 1.55;
+
   font-size: 0.95rem;
+  line-height: 1.55;
+
   overflow-wrap: anywhere;
 }
 
@@ -408,18 +562,32 @@ a {
 .footer {
   padding: 56px 24px;
 
+  border-top: 1px solid var(--border);
+
   text-align: center;
 }
 
 .footer p {
-  margin: 8px 0;
+  margin: 6px 0;
+}
+
+.footer p:first-child {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.25rem;
+}
+
+.footer p:last-child {
+  color: var(--text-soft);
+
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
 }
 
 
 /* =========================
    ESCRITORIO
-   Provisional: NO estamos
-   diseñándolo todavía.
+   Provisional: todavía
+   priorizamos móvil.
 ========================= */
 
 @media (min-width: 900px) {
