@@ -275,6 +275,7 @@ h3 {
   padding: 80px 24px;
 
   text-align: center;
+  border-bottom: 1px solid var(--border);
 }
 
 .section h2 {
@@ -312,6 +313,14 @@ h3 {
 
 .transport-block {
   margin-top: 44px;
+}
+
+.event-illustration {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  margin: 0 auto 24px;
 }
 
 
