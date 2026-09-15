@@ -86,6 +86,17 @@
       display: none;
     }
 
+    .error-campo {
+      color: #a12020;
+      margin: 8px 0 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    [aria-invalid="true"] {
+      border-color: #a12020;
+    }
+
     .bloque-plus-one {
       margin-top: 40px;
       padding-top: 32px;
@@ -150,12 +161,12 @@
           <legend>¿Tienes alguna alergia, intolerancia o necesidad alimentaria? *</legend>
 
           <label class="opcion">
-            <input type="radio" name="alimentacion" value="no">
+            <input type="radio" name="alimentacion" value="no" required>
             No
           </label>
 
           <label class="opcion">
-            <input type="radio" name="alimentacion" value="si">
+            <input type="radio" name="alimentacion" value="si" required>
             Sí
           </label>
         </fieldset>
@@ -175,12 +186,12 @@
           <legend>¿Utilizarás el autobús de ida? *</legend>
 
           <label class="opcion">
-            <input type="radio" name="bus_ida" value="si">
+            <input type="radio" name="bus_ida" value="si" required>
             Sí
           </label>
 
           <label class="opcion">
-            <input type="radio" name="bus_ida" value="no">
+            <input type="radio" name="bus_ida" value="no" required>
             No
           </label>
         </fieldset>
@@ -190,12 +201,12 @@
           <legend>¿Utilizarás el autobús de vuelta? *</legend>
 
           <label class="opcion">
-            <input type="radio" name="bus_vuelta" value="si">
+            <input type="radio" name="bus_vuelta" value="si" required>
             Sí
           </label>
 
           <label class="opcion">
-            <input type="radio" name="bus_vuelta" value="no">
+            <input type="radio" name="bus_vuelta" value="no" required>
             No
           </label>
         </fieldset>
@@ -205,12 +216,12 @@
           <legend>¿Vendrás con acompañante? *</legend>
 
           <label class="opcion">
-            <input type="radio" name="plus_one" value="si">
+            <input type="radio" name="plus_one" value="si" required>
             Sí
           </label>
 
           <label class="opcion">
-            <input type="radio" name="plus_one" value="no">
+            <input type="radio" name="plus_one" value="no" required>
             No
           </label>
         </fieldset>

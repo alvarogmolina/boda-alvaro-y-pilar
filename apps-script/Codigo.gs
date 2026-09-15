@@ -6,16 +6,37 @@ function doPost(e) {
 
     const datos = JSON.parse(e.postData.contents);
 
+    // Validar todos los textos que se guardarán antes de escribir ninguna fila.
+    const asiste = datos.asistencia === "si";
+    const acompanante = asiste && datos.plus_one === "si";
+    const limites = [
+      ["nombre", "Nombre y apellidos", 150, true],
+      ["alimentacion_texto", "Necesidades alimentarias", 500, asiste && datos.alimentacion === "si"],
+      ["plus_one_nombre", "Nombre del acompañante", 150, acompanante],
+      ["plus_one_alimentacion_texto", "Necesidades alimentarias del acompañante", 500, acompanante && datos.plus_one_alimentacion === "si"],
+      ["observaciones", "Observaciones", 1000, asiste]
+    ];
+    for (const [campo, etiqueta, maximo, activo] of limites) {
+      if (activo && typeof datos[campo] === "string") {
+        const longitud = Array.from(datos[campo]).length;
+        if (longitud > maximo) {
+          return respuesta(false,
+            `El campo «${etiqueta}» es demasiado largo: has escrito ${longitud} caracteres. Por favor, utiliza ${maximo} caracteres o menos.`,
+            "", campo);
+        }
+      }
+    }
+
     // =========================
     // FUNCIONES DE VALIDACIÓN
     // =========================
 
-    function texto(valor, maximo) {
+    function texto(valor) {
       if (typeof valor !== "string") {
         return "";
       }
 
-      let limpio = valor.trim().slice(0, maximo);
+      let limpio = valor.trim();
 
       // Evita que Google Sheets interprete texto como fórmula
       if (/^[=+\-@]/.test(limpio)) {
@@ -275,14 +296,15 @@ if (!hoja) {
 // RESPUESTA
 // =========================
 
-function respuesta(ok, mensaje, id) {
+function respuesta(ok, mensaje, id, campo) {
 
   return ContentService
     .createTextOutput(
       JSON.stringify({
         ok: ok,
         mensaje: mensaje || "",
-        id: id || ""
+        id: id || "",
+        campo: campo || ""
       })
     )
     .setMimeType(

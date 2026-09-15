@@ -192,11 +192,70 @@ document
   });
 
 
+/* LONGITUD DE LOS TEXTOS */
+
+const limitesTexto = [
+  ["nombre", "Nombre y apellidos", 150],
+  ["alimentacion_texto", "Necesidades alimentarias", 500],
+  ["plus_one_nombre", "Nombre del acompañante", 150],
+  ["plus_one_alimentacion_texto", "Necesidades alimentarias del acompañante", 500],
+  ["observaciones", "Observaciones", 1000]
+].map(([nombre, etiqueta, maximo]) => {
+  const campo = form.elements.namedItem(nombre);
+  const aviso = document.createElement("p");
+  aviso.id = `${campo.id}-error`;
+  aviso.className = "error-campo";
+  aviso.hidden = true;
+  aviso.setAttribute("aria-live", "polite");
+  campo.setAttribute("aria-describedby", aviso.id);
+  campo.insertAdjacentElement("afterend", aviso);
+  return { campo, etiqueta, maximo, aviso };
+});
+
+let validarLongitudAlEditar = false;
+
+function mostrarErrorTexto(item, mensaje) {
+  item.aviso.textContent = mensaje;
+  item.aviso.hidden = !mensaje;
+  if (mensaje) {
+    item.campo.setAttribute("aria-invalid", "true");
+  } else {
+    item.campo.removeAttribute("aria-invalid");
+  }
+}
+
+function validarLongitudes() {
+  let primerCampo = null;
+  limitesTexto.forEach(item => {
+    const longitud = Array.from(item.campo.value).length;
+    const demasiadoLargo = !item.campo.closest(".oculto") && longitud > item.maximo;
+    mostrarErrorTexto(item, demasiadoLargo
+      ? `El campo «${item.etiqueta}» es demasiado largo: has escrito ${longitud} caracteres. Por favor, utiliza ${item.maximo} caracteres o menos.`
+      : "");
+    if (demasiadoLargo && !primerCampo) primerCampo = item.campo;
+  });
+  return primerCampo;
+}
+
+form.addEventListener("input", () => {
+  if (validarLongitudAlEditar) validarLongitudes();
+});
+form.addEventListener("change", () => {
+  if (validarLongitudAlEditar) validarLongitudes();
+});
+
 /* ENVÍO REAL */
 
 form.addEventListener("submit", async function (event) {
 
   event.preventDefault();
+
+  validarLongitudAlEditar = true;
+  const primerCampoLargo = validarLongitudes();
+  if (primerCampoLargo) {
+    primerCampoLargo.focus();
+    return;
+  }
 
   const WEB_APP_URL =
     "https://script.google.com/macros/s/AKfycbwBmhsRTE8nOIEYsyJVKzleggixTVyyw_iaGfVlvg0LWR2vCRPIX7gaYArpsSZhUMQq/exec";
@@ -223,17 +282,36 @@ form.addEventListener("submit", async function (event) {
     const resultado = await response.json();
 
     if (!resultado.ok) {
-      throw new Error(
-        resultado.mensaje ||
-        "El servidor ha rechazado la confirmación"
-      );
+      const item = limitesTexto.find(item => item.campo.name === resultado.campo);
+      if (item && resultado.mensaje) {
+        mostrarErrorTexto(item, resultado.mensaje);
+        item.campo.focus();
+      } else {
+        alert(resultado.mensaje || "El servidor ha rechazado la confirmación");
+      }
+      return;
     }
 
     alert("¡Confirmación enviada correctamente!");
 
     form.reset();
+    validarLongitudAlEditar = false;
+    limitesTexto.forEach(item => mostrarErrorTexto(item, ""));
 
-    datosAsistente.classList.add("oculto");
+    // reset() borra respuestas, pero no los atributos required dinámicos.
+    datosAsistente.classList.remove("oculto");
+    hacerRadiosObligatorios("alimentacion", true);
+    hacerRadiosObligatorios("bus_ida", true);
+    hacerRadiosObligatorios("bus_vuelta", true);
+    hacerRadiosObligatorios("plus_one", true);
+
+    alimentacionTexto.required = false;
+    plusOneNombre.required = false;
+    plusOneAlimentacionTexto.required = false;
+    hacerRadiosObligatorios("plus_one_alimentacion", false);
+    hacerRadiosObligatorios("plus_one_bus_ida", false);
+    hacerRadiosObligatorios("plus_one_bus_vuelta", false);
+
     detalleAlimentacion.classList.add("oculto");
     plusOneData.classList.add("oculto");
     plusOneAlimentacionDetalle.classList.add("oculto");
