@@ -250,6 +250,9 @@ form.addEventListener("submit", async function (event) {
 
   event.preventDefault();
 
+  const boton = form.querySelector('button[type="submit"]');
+  if (boton.disabled) return;
+
   validarLongitudAlEditar = true;
   const primerCampoLargo = validarLongitudes();
   if (primerCampoLargo) {
@@ -263,9 +266,14 @@ form.addEventListener("submit", async function (event) {
   const formData = new FormData(form);
   const datos = Object.fromEntries(formData.entries());
 
-  const boton = form.querySelector('button[type="submit"]');
-
-  boton.disabled = true;
+  // Capturar los datos antes de desactivar los controles: FormData los omite
+  // cuando están desactivados. Conservar su estado para restaurarlo al terminar.
+  const controles = Array.from(form.elements, campo => ({
+    campo,
+    desactivado: campo.disabled
+  }));
+  controles.forEach(({ campo }) => { campo.disabled = true; });
+  let campoConError = null;
   boton.textContent = "Enviando...";
 
   try {
@@ -285,7 +293,7 @@ form.addEventListener("submit", async function (event) {
       const item = limitesTexto.find(item => item.campo.name === resultado.campo);
       if (item && resultado.mensaje) {
         mostrarErrorTexto(item, resultado.mensaje);
-        item.campo.focus();
+        campoConError = item.campo;
       } else {
         alert(resultado.mensaje || "El servidor ha rechazado la confirmación");
       }
@@ -326,8 +334,11 @@ form.addEventListener("submit", async function (event) {
 
   } finally {
 
-    boton.disabled = false;
+    controles.forEach(({ campo, desactivado }) => {
+      campo.disabled = desactivado;
+    });
     boton.textContent = "Enviar confirmación";
+    if (campoConError) campoConError.focus();
 
   }
 

@@ -61,6 +61,9 @@ async function cargarComentarios() {
 formularioComentarios.addEventListener("submit", async function (event) {
   event.preventDefault();
 
+  const boton = formularioComentarios.querySelector('button[type="submit"]');
+  if (boton.disabled) return;
+
   const formData = new FormData(formularioComentarios);
 
   const datos = {
@@ -68,9 +71,12 @@ formularioComentarios.addEventListener("submit", async function (event) {
     comentario: formData.get("comentario")
   };
 
-  const boton = formularioComentarios.querySelector('button[type="submit"]');
-
-  boton.disabled = true;
+  // FormData ya contiene las respuestas; ahora se puede bloquear la edición.
+  const controles = Array.from(formularioComentarios.elements, campo => ({
+    campo,
+    desactivado: campo.disabled
+  }));
+  controles.forEach(({ campo }) => { campo.disabled = true; });
   boton.textContent = "Enviando...";
 
   mensajeExito.hidden = true;
@@ -112,7 +118,9 @@ formularioComentarios.addEventListener("submit", async function (event) {
     );
 
   } finally {
-    boton.disabled = false;
+    controles.forEach(({ campo, desactivado }) => {
+      campo.disabled = desactivado;
+    });
     boton.textContent = "Enviar mensaje";
   }
 });
