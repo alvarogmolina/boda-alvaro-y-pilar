@@ -607,3 +607,50 @@ h3 {
   }
 
 }
+
+/* Página 404 */
+
+.error-page {
+  min-height: 100svh;
+  margin: 0;
+  background: var(--background);
+}
+
+.error-content {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 48px 28px;
+  text-align: center;
+}
+
+.error-code {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+}
+
+.error-content h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  line-height: 1.1;
+}
+
+.error-text {
+  max-width: 360px;
+  margin: 20px auto 8px;
+  color: var(--text-soft);
+}
+
+.error-logo {
+  display: block;
+  width: 150px;
+  max-width: 45vw;
+  height: auto;
+  margin-top: 42px;
+  opacity: 0.7;
+}
