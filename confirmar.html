@@ -15,7 +15,7 @@
 
     body {
       margin: 0;
-      padding: 32px 20px 60px;
+      padding: 120px 20px 60px;
       font-family: Arial, sans-serif;
       color: var(--text);
       background: var(--background);
@@ -27,14 +27,8 @@
       margin: 0 auto;
     }
 
-    .volver {
-      display: inline-block;
-      margin-bottom: 32px;
-      color: var(--text);
-      text-decoration: none;
-    }
-
     h1 {
+      margin-top: 0;
       margin-bottom: 8px;
       font-size: 2rem;
       line-height: 1.15;
@@ -142,9 +136,14 @@
 
 <body>
 
-  <main>
+  <header class="header">
+    <a href="index.html" class="header-logo" aria-label="Ir al inicio">
+      <img src="images/letras.png" alt="Álvaro y Pilar">
+    </a>
+    <a href="index.html#inicio" class="about-back">← Volver al inicio</a>
+  </header>
 
-    <a href="index.html" class="volver">← Volver</a>
+  <main>
 
     <h1>Confirmar asistencia</h1>
 
