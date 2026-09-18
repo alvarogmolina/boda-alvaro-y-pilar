@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Confirmar asistencia | Álvaro & Pilar</title>
+  <link rel="icon" type="image/png" href="images/letras.png">
+  <link rel="stylesheet" href="styles.css">
 
   <style>
     * {
@@ -15,8 +17,8 @@
       margin: 0;
       padding: 32px 20px 60px;
       font-family: Arial, sans-serif;
-      color: #222;
-      background: #fff;
+      color: var(--text);
+      background: var(--background);
     }
 
     main {
@@ -28,12 +30,14 @@
     .volver {
       display: inline-block;
       margin-bottom: 32px;
-      color: #222;
+      color: var(--text);
       text-decoration: none;
     }
 
     h1 {
       margin-bottom: 8px;
+      font-size: 2rem;
+      line-height: 1.15;
     }
 
     h2 {
@@ -60,14 +64,28 @@
     textarea {
       width: 100%;
       padding: 14px;
-      border: 1px solid #aaa;
-      border-radius: 4px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--background-light);
+      color: var(--text);
       font: inherit;
     }
 
     textarea {
       min-height: 100px;
       resize: vertical;
+    }
+
+    input[type="radio"] {
+      accent-color: var(--accent);
+    }
+
+    input:focus-visible,
+    textarea:focus-visible,
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
 
     fieldset {
@@ -100,18 +118,24 @@
     .bloque-plus-one {
       margin-top: 40px;
       padding-top: 32px;
-      border-top: 1px solid #ccc;
+      border-top: 1px solid var(--border);
     }
 
     button {
       width: 100%;
       padding: 16px;
       margin-top: 16px;
-      border: 1px solid #222;
-      background: #222;
-      color: #fff;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--text);
       font: inherit;
       cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: wait;
     }
   </style>
 </head>
@@ -129,6 +153,9 @@
       Confírmanos tu asistencia rellenando este formulario.
     </p>
 
+    <!-- Mejora pendiente (aplazada por decisión del usuario): mostrar una
+         confirmación permanente tras el envío, con opciones para volver al
+         inicio o confirmar a otra persona. Mantener por ahora el aviso actual. -->
     <form id="rsvp-form">
 
       <!-- INVITADO PRINCIPAL -->

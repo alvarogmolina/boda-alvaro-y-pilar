@@ -91,6 +91,7 @@ h3 {
 }
 
 .menu-button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,7 +118,8 @@ h3 {
 ========================= */
 
 .navigation {
-  display: none;
+  display: grid;
+  grid-template-rows: 0fr;
 
   position: absolute;
   top: 64px;
@@ -126,16 +128,51 @@ h3 {
   width: 100%;
 
   background: var(--background);
-  border-bottom: 1px solid var(--border);
+  box-shadow: 0 8px 18px rgba(46, 42, 39, 0);
+  visibility: hidden;
+  pointer-events: none;
+  transition: grid-template-rows 380ms ease, box-shadow 380ms ease,
+    visibility 0s linear 380ms;
 }
 
 .navigation.open {
-  display: flex;
-  flex-direction: column;
+  grid-template-rows: 1fr;
+  box-shadow: 0 8px 18px rgba(46, 42, 39, 0.12);
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.navigation-links {
+  min-height: 0;
+  max-height: calc(100svh - 64px);
+  overflow-y: auto;
+}
+
+.menu-button[aria-expanded="true"] {
+  font-size: 0;
+}
+
+.menu-button[aria-expanded="true"]::before,
+.menu-button[aria-expanded="true"]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 23px;
+  height: 1.25px;
+  background: currentColor;
+  border-radius: 1px;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.menu-button[aria-expanded="true"]::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .navigation a {
-  padding: 18px 24px;
+  display: block;
+  padding: 14px 24px;
 
   color: var(--text);
   text-decoration: none;
@@ -606,6 +643,163 @@ h3 {
     margin: 0 auto;
   }
 
+}
+
+/* Contacto */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.contact-grid .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 0;
+  padding: 12px 8px;
+  font-size: 0.9rem;
+  letter-spacing: normal;
+  white-space: nowrap;
+}
+
+.contact-grid .button img {
+  flex-shrink: 0;
+}
+
+.comments-notice {
+  margin: -12px 0 28px;
+  color: var(--text-soft);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 319px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* Nosotros */
+
+.about-preview {
+  background: var(--background-light);
+}
+
+.about-eyebrow {
+  margin: 0 0 16px;
+  color: var(--text-soft);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.about-back {
+  padding: 10px 0 10px 12px;
+  color: var(--text);
+  font-size: 0.9rem;
+  text-underline-offset: 4px;
+}
+
+.about-page {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 120px 24px 80px;
+}
+
+.about-heading,
+.about-story,
+.about-next {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-heading h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 7vw, 3.8rem);
+  line-height: 1.1;
+}
+
+.about-heading > p:last-child {
+  margin: 24px 0 0;
+}
+
+.about-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin: 48px 0;
+}
+
+.about-photo-placeholder {
+  aspect-ratio: 4 / 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background-light);
+  text-align: center;
+}
+
+.about-photo-placeholder span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.4rem;
+}
+
+.about-photo-placeholder small {
+  color: var(--text-soft);
+}
+
+.about-story h2 {
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.about-next {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(46, 42, 39, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 380ms ease, visibility 380ms ease;
+}
+
+.menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation,
+  .menu-overlay {
+    transition: none;
+  }
+}
+
+@media (max-width: 599px) {
+  .about-gallery {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Página 404 */

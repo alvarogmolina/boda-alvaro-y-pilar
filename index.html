@@ -50,16 +50,21 @@
     </button>
 
     <nav class="navigation" id="navigation">
+      <div class="navigation-links">
       <a href="#inicio">Inicio</a>
+      <a href="#nosotros">Nosotros</a>
       <a href="#gran-dia">El gran día</a>
       <a href="#transporte">Transporte</a>
       <a href="#alojamiento">Alojamiento</a>
       <a href="#confirmacion">Confirmar asistencia</a>
       <a href="#informacion">Información útil</a>
+      <a href="#contacto">Contacto</a>
+      </div>
     </nav>
 
   </header>
 
+  <div class="menu-overlay" id="menu-overlay" aria-hidden="true"></div>
 
   <main>
 
@@ -95,12 +100,19 @@
     <p id="countdown">Calculando...</p>
   </div>
 
-  <a href="#gran-dia" class="scroll-down" aria-label="Ir a El gran día">
+  <a href="#nosotros" class="scroll-down" aria-label="Ir a Nosotros">
     ↓
   </a>
 
 </section>
 
+
+    <!-- NOSOTROS -->
+    <section class="section about-preview" id="nosotros">
+      <h2>Nosotros</h2>
+      <p>Nuestra historia y algunos de nuestros recuerdos juntos.</p>
+      <a href="nosotros.html" class="button">Conoce nuestra historia</a>
+    </section>
 
     <!-- EL GRAN DÍA -->
     <section class="section" id="gran-dia">
@@ -325,13 +337,38 @@
 
     </section>
 
+    <!-- CONTACTO -->
+    <section class="section" id="contacto">
+      <h2>Contacto</h2>
+
+      <div class="contact-grid">
+        <div>
+          <h3>Álvaro</h3>
+          <a href="tel:+34665599891" class="button" aria-label="Llamar a Álvaro al 665 599 891. También disponible en WhatsApp.">
+            <span>665 599 891</span>
+            <img src="images/whatsapp.svg" width="18" height="18" alt="">
+          </a>
+        </div>
+
+        <div>
+          <h3>Pilar</h3>
+          <a href="tel:+34635469845" class="button" aria-label="Llamar a Pilar al 635 469 845. También disponible en WhatsApp.">
+            <span>635 469 845</span>
+            <img src="images/whatsapp.svg" width="18" height="18" alt="">
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- Comentarios -->
     <section id="comentarios" class="comments-section">
   <div class="comments-container">
 
     <h2>Déjanos un mensaje</h2>
 
-    <form id="form-comentarios" class="comments-form">
+    <p id="comentarios-aviso" class="comments-notice">Tu mensaje aparecerá publicado en esta página.</p>
+
+    <form id="form-comentarios" class="comments-form" aria-describedby="comentarios-aviso">
       <div class="form-group">
         <label for="comentario-nombre">Nombre *</label>
         <input
