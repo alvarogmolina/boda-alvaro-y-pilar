@@ -671,6 +671,69 @@ h3 {
   flex-shrink: 0;
 }
 
+.contact-gift {
+  max-width: 520px;
+  margin: 48px auto 0;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.contact-gift .gift-label {
+  display: block;
+  margin-top: 24px;
+}
+
+.gift-account {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.gift-account #gift-iban {
+  width: 100%;
+  min-width: 0;
+  padding: 14px 8px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--background-light);
+  color: var(--text);
+  font-size: 1rem;
+  text-align: center;
+  overflow-wrap: anywhere;
+  user-select: text;
+}
+
+.gift-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.gift-account #gift-iban:focus-visible,
+.gift-account button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.gift-note {
+  color: var(--text-soft);
+  font-size: 0.85rem;
+}
+
+#gift-copy-status {
+  min-height: 1.6em;
+}
+
+
 .comments-notice {
   margin: -12px 0 28px;
   color: var(--text-soft);
@@ -733,37 +796,44 @@ h3 {
 
 .about-gallery {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-  margin: 48px 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+  margin: 32px 0 0;
 }
 
-.about-photo-placeholder {
-  aspect-ratio: 4 / 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 24px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--background-light);
+.about-main-photo {
+  margin: 32px 0;
+}
+
+.about-gallery figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.about-page figcaption {
+  margin-top: 12px;
+  color: var(--text-soft);
+  font-size: 0.9rem;
   text-align: center;
 }
 
-.about-photo-placeholder span {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.4rem;
+.about-moments {
+  margin-top: 64px;
 }
 
-.about-photo-placeholder small {
-  color: var(--text-soft);
+.about-moments h2 {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.15;
+  text-align: center;
 }
 
-.about-story h2 {
-  font-size: 1.8rem;
-  line-height: 1.2;
+.about-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
 }
 
 .about-next {
@@ -796,9 +866,9 @@ h3 {
   }
 }
 
-@media (max-width: 599px) {
+@media (min-width: 700px) {
   .about-gallery {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

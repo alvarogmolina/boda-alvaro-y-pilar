@@ -84,3 +84,27 @@ function updateCountdown() {
 updateCountdown();
 
 setInterval(updateCountdown, 60000);
+
+// Copiar el IBAN sin espacios para facilitar su pegado.
+const ibanInput = document.getElementById("gift-iban");
+const copyIbanButton = document.getElementById("copy-iban");
+const copyIbanStatus = document.getElementById("gift-copy-status");
+
+copyIbanButton.addEventListener("click", async () => {
+  copyIbanButton.disabled = true;
+  copyIbanStatus.textContent = "";
+  try {
+    await navigator.clipboard.writeText(ibanInput.textContent.replace(/\s/g, ""));
+    copyIbanStatus.textContent = "IBAN copiado.";
+  } catch (error) {
+    ibanInput.focus();
+    const range = document.createRange();
+    range.selectNodeContents(ibanInput);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    copyIbanStatus.textContent = "No se ha podido copiar automáticamente. Mantén pulsado el número o usa Ctrl+C / ⌘C para copiarlo.";
+  } finally {
+    copyIbanButton.disabled = false;
+  }
+});
