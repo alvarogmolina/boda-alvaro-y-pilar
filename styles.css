@@ -365,7 +365,8 @@ h3 {
    BOTONES
 ========================= */
 
-.button {
+.button,
+.hotel-contact a {
   display: inline-block;
 
   margin-top: 18px;
@@ -436,6 +437,35 @@ h3 {
 .hotel-info p {
   margin-top: 8px;
   margin-bottom: 8px;
+}
+
+.hotel-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.hotel-contact a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 0;
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.hotel-contact a:hover {
+  background: var(--background);
+}
+
+.hotel-contact a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 
@@ -685,9 +715,9 @@ h3 {
 
 .gift-account {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  justify-content: center;
+  justify-items: center;
   gap: 8px;
 }
 
