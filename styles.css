@@ -749,6 +749,29 @@ h3 {
   cursor: pointer;
 }
 
+@media (max-width: 699px) {
+  .gift-account {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px;
+  }
+
+  .gift-account #gift-iban {
+    padding: 14px 6px;
+    font-size: 0.9rem;
+  }
+
+  .gift-copy {
+    gap: 4px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 359px) {
+  .gift-copy span {
+    display: none;
+  }
+}
+
 .gift-account #gift-iban:focus-visible,
 .gift-account button:focus-visible {
   outline: 2px solid var(--accent);
