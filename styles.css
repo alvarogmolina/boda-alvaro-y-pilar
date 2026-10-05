@@ -465,25 +465,23 @@ h3 {
   overflow: hidden;
 }
 
-.hotel-card summary {
+.hotel-heading {
   padding: 20px;
-
-  cursor: pointer;
-  list-style-position: inside;
 }
 
-.hotel-card summary strong,
-.hotel-card summary span {
+.hotel-heading h2,
+.hotel-heading span {
   display: block;
 }
 
-.hotel-card summary strong {
+.hotel-heading h2 {
+  margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 400;
 }
 
-.hotel-card summary span {
+.hotel-heading span {
   margin-top: 6px;
 
   color: var(--text-soft);
@@ -493,6 +491,22 @@ h3 {
 
 .hotel-info {
   padding: 0 20px 20px;
+}
+
+.accommodation-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 112px 24px 48px;
+}
+
+.accommodation-list {
+  display: grid;
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.accommodation-list .hotel-card {
+  margin: 0;
 }
 
 .hotel-info p {
