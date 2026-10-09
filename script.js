@@ -48,6 +48,43 @@ navigationLinks.forEach((link) => {
 
 
 // =========================
+// COMPARTIR WEB
+// =========================
+
+const shareButton = document.getElementById("share-website");
+const shareStatus = document.getElementById("share-status");
+
+shareButton.addEventListener("click", async () => {
+  // Compartir siempre la web pública, también desde la prueba local.
+  const url = "https://alvaroypilar.es/";
+  shareStatus.hidden = true;
+  shareButton.disabled = true;
+
+  try {
+    if (typeof navigator.share === "function") {
+      try {
+        await navigator.share({ title: "Álvaro & Pilar", url });
+        cambiarEstadoMenu(false);
+        menuButton.focus();
+        return;
+      } catch (error) {
+        if (error.name === "AbortError") return;
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(url);
+      shareStatus.textContent = "Enlace copiado. Ya puedes pegarlo donde quieras.";
+      shareStatus.hidden = false;
+    } catch (error) {
+      window.prompt("Copia este enlace para compartir la web:", url);
+    }
+  } finally {
+    shareButton.disabled = false;
+  }
+});
+
+// =========================
 // CUENTA ATRÁS
 // =========================
 
