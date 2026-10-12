@@ -152,9 +152,12 @@
       Confírmanos tu asistencia rellenando este formulario.
     </p>
 
-    <!-- Mejora pendiente (aplazada por decisión del usuario): mostrar una
-         confirmación permanente tras el envío, con opciones para volver al
-         inicio o confirmar a otra persona. Mantener por ahora el aviso actual. -->
+    <section id="rsvp-success" class="rsvp-success" aria-labelledby="rsvp-success-title" hidden>
+      <h2 id="rsvp-success-title" tabindex="-1">¡Gracias por confirmar!</h2>
+      <p>Hemos recibido tu respuesta correctamente.</p>
+      <a href="index.html" class="button">Volver al inicio</a>
+      <button type="button" id="rsvp-again">Confirmar a otra persona</button>
+    </section>
     <form id="rsvp-form">
 
       <!-- INVITADO PRINCIPAL -->
@@ -353,6 +356,10 @@
     </form>
 
   </main>
+
+  <footer class="footer">
+    <img class="wedding-seal" src="images/logo.png" alt="Álvaro y Pilar · 27 de febrero de 2027" width="120" height="122" loading="lazy">
+  </footer>
 
   <script src="rsvp.js"></script>
 

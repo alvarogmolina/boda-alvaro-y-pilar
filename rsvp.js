@@ -1,4 +1,12 @@
 const form = document.getElementById("rsvp-form");
+const successPanel = document.getElementById("rsvp-success");
+
+document.getElementById("rsvp-again").addEventListener("click", () => {
+  successPanel.hidden = true;
+  form.hidden = false;
+  document.querySelector(".intro").hidden = false;
+  document.getElementById("nombre").focus();
+});
 
 const datosAsistente = document.getElementById("datos-asistente");
 
@@ -300,7 +308,10 @@ form.addEventListener("submit", async function (event) {
       return;
     }
 
-    alert("¡Confirmación enviada correctamente!");
+    form.hidden = true;
+    document.querySelector(".intro").hidden = true;
+    successPanel.hidden = false;
+    document.getElementById("rsvp-success-title").focus();
 
     form.reset();
     validarLongitudAlEditar = false;
