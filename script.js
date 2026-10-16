@@ -127,7 +127,7 @@ const ibanInput = document.getElementById("gift-iban");
 const copyIbanButton = document.getElementById("copy-iban");
 const copyIbanStatus = document.getElementById("gift-copy-status");
 
-copyIbanButton.addEventListener("click", async () => {
+copyIbanButton?.addEventListener("click", async () => {
   copyIbanButton.disabled = true;
   copyIbanStatus.textContent = "";
   try {
