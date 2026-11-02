@@ -292,6 +292,14 @@
 
     <div class="published-comments">
       <h3>Comentarios publicados</h3>
+      <div id="comentarios-cargando" class="comments-loading" role="status" hidden>
+        <span class="comments-spinner" aria-hidden="true"></span>
+        <p>Cargando comentarios...</p>
+      </div>
+      <div id="comentarios-error" class="comments-load-error" hidden>
+        <p role="alert">No hemos podido cargar los comentarios.</p>
+        <button type="button" id="comentarios-reintentar" class="button">Reintentar</button>
+      </div>
       <div id="lista-comentarios"></div>
     </div>
 

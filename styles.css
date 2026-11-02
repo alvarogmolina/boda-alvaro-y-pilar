@@ -693,6 +693,47 @@ h3 {
   gap: 14px;
 }
 
+.comments-loading,
+.comments-load-error {
+  padding: 24px 0;
+  text-align: center;
+  color: var(--text-soft);
+}
+
+.comments-loading p,
+.comments-load-error p {
+  margin: 12px 0 0;
+}
+
+.comments-spinner {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: comments-spin 900ms linear infinite;
+}
+
+#comentarios-reintentar:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+#comentarios-reintentar:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+@keyframes comments-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .comments-spinner { animation: none; }
+}
+
 .comment-card {
   padding: 18px 20px;
 

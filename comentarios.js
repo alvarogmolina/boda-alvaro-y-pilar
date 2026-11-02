@@ -4,19 +4,38 @@ const COMENTARIOS_URL =
 const formularioComentarios = document.getElementById("form-comentarios");
 const listaComentarios = document.getElementById("lista-comentarios");
 const mensajeExito = document.getElementById("comentario-exito");
+const cargaComentarios = document.getElementById("comentarios-cargando");
+const errorComentarios = document.getElementById("comentarios-error");
+const reintentarComentarios = document.getElementById("comentarios-reintentar");
+let peticionComentarios = null;
+let comentariosCargados = false;
 
 
-async function cargarComentarios() {
+function cargarComentarios() {
+  // Un envío confirmado necesita una lectura nueva, posterior a ese envío.
+  // Cancelar la lectura anterior evita mostrar una respuesta desactualizada.
+  if (peticionComentarios) peticionComentarios.abort();
+  const controlador = new AbortController();
+  peticionComentarios = controlador;
+  return solicitarComentarios(controlador);
+}
+
+async function solicitarComentarios(controlador) {
+  cargaComentarios.hidden = comentariosCargados;
+  errorComentarios.hidden = true;
+  reintentarComentarios.disabled = true;
+  listaComentarios.setAttribute("aria-busy", "true");
   try {
-    const response = await fetch(COMENTARIOS_URL);
+    const response = await fetch(COMENTARIOS_URL, { signal: controlador.signal });
 
     if (!response.ok) {
       throw new Error(`Error HTTP: ${response.status}`);
     }
 
     const comentarios = await response.json();
-
-    listaComentarios.innerHTML = "";
+    if (controlador !== peticionComentarios) return;
+    if (!Array.isArray(comentarios)) throw new Error("Respuesta de comentarios inválida");
+    const fragmento = document.createDocumentFragment();
 
     comentarios.forEach(function (item) {
       const bloque = document.createElement("div");
@@ -49,14 +68,28 @@ async function cargarComentarios() {
       bloque.appendChild(cabecera);
       bloque.appendChild(mensaje);
 
-      listaComentarios.appendChild(bloque);
+      fragmento.appendChild(bloque);
     });
+    listaComentarios.replaceChildren(fragmento);
+    comentariosCargados = true;
 
   } catch (error) {
+    if (controlador !== peticionComentarios || error.name === "AbortError") return;
     console.error("Error al cargar comentarios:", error);
+    errorComentarios.hidden = false;
+  } finally {
+    if (controlador === peticionComentarios) {
+      cargaComentarios.hidden = true;
+      reintentarComentarios.disabled = false;
+      listaComentarios.setAttribute("aria-busy", "false");
+      peticionComentarios = null;
+    }
   }
 }
 
+reintentarComentarios.addEventListener("click", () => {
+  if (!peticionComentarios) cargarComentarios();
+});
 
 formularioComentarios.addEventListener("submit", async function (event) {
   event.preventDefault();
